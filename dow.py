@@ -7,8 +7,6 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from datetime import datetime
 import pandas_datareader.data as web
-import finsymbols
-
 
 DOW = "https://en.wikipedia.org/wiki/Dow_Jones_Industrial_Average"
 COMPANY_SECTOR = 3
@@ -38,8 +36,8 @@ def scrape_dow_list(site):
 def download_ohlc(sector_tickers, start, end):
     sector_ohlc = {}
     for sector, tickers in sector_tickers.iteritems():
-        print 'Downloading data from Yahoo for %s sector' % sector
-        data = web.DataReader(tickers, 'yahoo', start, end)
+        print 'Downloading data from Google for %s sector' % sector
+        data = web.DataReader(tickers, 'google', start, end)
         for item in ['Open', 'High', 'Low']:
             data[item] = data[item] * data['Adj Close'] / data['Close']
         data.rename(items={'Open': 'open', 'High': 'high', 'Low': 'low',
