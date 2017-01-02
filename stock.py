@@ -30,6 +30,24 @@ def scrape_list(site, company_name, company_symbol, stock_type):
             companies[company].append(ticker)
     return companies
 
+def scrape_nikkei(site, company_name, company_symbol, stock_type):
+    hdr = {'User-Agent': 'Mozilla/5.0'}
+    req = urllib2.Request(site, headers=hdr)
+    page = urllib2.urlopen(req)
+    soup = BeautifulSoup(page)
+
+    table = soup.find('div', {'class': 'col-xs-12 col-sm-8'})
+    companies = dict()
+    for row in table.findAll('div', {'class': 'row component-list'}):
+        if len(row) > 0:
+            company = str(row.a.getText())
+            print company
+            ticker = str(row.div.string.strip()) + stock_type
+            print ticker
+            companies[company] = list()
+            companies[company].append(ticker)
+    return companies
+
 def download_ohlc(companies, start, end):
     company_ohlc = {}
     for company, ticker in companies.iteritems():
@@ -52,6 +70,10 @@ def store_HDF5(company_ohlc, path):
             store[company] = ohlc
 
 def get_historical_stock_data(site, company, company_symbol, stock_type):
-    companies = scrape_list(site, company, company_symbol, stock_type)
+    companies = ''
+    if stock_type == '.F':
+        companies = scrape_nikkei(site, company, company_symbol, stock_type)
+    else:
+        companies = scrape_list(site, company, company_symbol, stock_type)
     company_ohlc = download_ohlc(companies, START, END)
     # store_HDF5(company_ohlc, 'dow.h5')
