@@ -2,13 +2,13 @@
 import stock
 
 
-FTSE = "https://en.wikipedia.org/wiki/FTSE_100_Index"
-COMPANY = 0
-COMPANY_SYMBOL = 1
-STOCK_TYPE = '.L'
-INDEX = 'ftse'
+FTSE = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+COMPANY = 1
+COMPANY_SYMBOL = 0
+STOCK_TYPE = ''
+INDEX = 'snp'
 
-def get_ftse():
+def get_snp():
     stock.get_historical_stock_data(FTSE, COMPANY, COMPANY_SYMBOL, STOCK_TYPE, INDEX)
 
 def get_index():

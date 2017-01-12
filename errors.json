@@ -1,0 +1,4 @@
+// These stock tickers don't work for Yahoo finance
+[
+     {"BT Group": ["BT.L"]}
+]
