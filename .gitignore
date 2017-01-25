@@ -6,3 +6,4 @@ nikkei/
 snp/
 *.pyc
 .ipynb_checkpoints/
+*.yml
