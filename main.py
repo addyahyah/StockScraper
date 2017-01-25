@@ -33,10 +33,12 @@ def job():
         dow.get_dow()
         sse.get_sse()
         snp.get_snp()
-        call("hadoop fs -put dow/ /tmp/StockData/dow/", shell=True)
-        call("hadoop fs -put ftse/ /tmp/StockData/ftse/", shell=True)
-        call("hadoop fs -put sse/ /tmp/StockData/sse/", shell=True)
-        call("hadoop fs -put snp/ /tmp/StockData/snp/", shell=True)
+        call("hadoop fs -rm -r -f /tmp/StockData/*", shell=True)
+        print "Moving files from local fs to hdfs"
+        call("hadoop fs -put dow/ /tmp/StockData/", shell=True)
+        call("hadoop fs -put ftse/ /tmp/StockData/", shell=True)
+        call("hadoop fs -put sse/ /tmp/StockData/", shell=True)
+        call("hadoop fs -put snp/ /tmp/StockData/", shell=True)
     except:
         print "Error while getting data from Yahoo finance api"
 
