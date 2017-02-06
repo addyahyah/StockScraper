@@ -20,6 +20,6 @@ A set of python scripts that scrape wikipedia pages for companies tracked by a s
 ## How to Run it
 * Log in to your VM
 * Go to StockData
-* Run `source activate stockSeen`
+* Run `source activate stock`
 * Run `python main.py`
 * Then you wait forever 
