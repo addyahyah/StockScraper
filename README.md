@@ -16,3 +16,10 @@ A set of python scripts that scrape wikipedia pages for companies tracked by a s
 
 ## Notes
 * In the London Stock Exchange, the company BT Group with the ticker BT.A does not exist in the finance api. It has been eliminated from this application.
+
+## How to Run it
+* Log in to your VM
+* Go to StockData
+* Run `source activate stockSeen`
+* Run `python main.py`
+* Then you wait forever 
